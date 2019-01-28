@@ -61,6 +61,7 @@ export default {
 ```
 
 ### Async Data
+Data will be ready before the page is served to the client.
 Using the asyncData object in pages:
 ```javascript
 export default {
@@ -71,3 +72,37 @@ export default {
 }
 ```
 __You do NOT have access of the component instance through this inside asyncData because it is called before initiating the component.__
+
+### The _fetch_ method
+The fetch method is used to fill the store before rendering the page, it's like the ```asyncData``` method except it doesn't set the component data. API calls take place on the server side.
+```javascript
+// posts.js in the store
+export const state = () => ({
+ all: []
+})
+
+export const actions = {
+ async fetchAllPosts({commit}) {
+  let posts = await this.$axios.$get('posts')
+  commit('setPosts', posts)
+ }
+}
+
+export const mutations = {
+ setPosts (state, posts) {
+  state.all = posts
+ }
+}
+```
+```javascript
+// index.vue in the posts directory of the pages
+async fetch ({store}) {
+ await store.dispatch('posts/fetchAllPosts')
+},
+computed: {
+ posts() {
+  return this.$store.state.posts.all
+ }
+}
+```
+
