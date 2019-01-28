@@ -11,6 +11,7 @@ Nuxt.js is not a server side framework. It runs on the servers. It renders the f
 Useful links:
 * [Creating a nuxt app + documentation](https://nuxtjs.org/guide/installation)
 * [Awesome nuxt](https://github.com/nuxt-community/awesome-nuxt)
+* [Axios for nuxt](https://axios.nuxtjs.org/) - interceptors, headers...
 
 ## How nuxt works
 ```
@@ -69,3 +70,4 @@ export default {
   }
 }
 ```
+__You do NOT have access of the component instance through this inside asyncData because it is called before initiating the component.__
