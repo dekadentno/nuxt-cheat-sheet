@@ -6,7 +6,7 @@ Nuxt.js is not a server side framework. It runs on the servers. It renders the f
 
 Useful links:
 * [Creating a nuxt app + documentation](https://nuxtjs.org/guide/installation)
-* 
+* [Awesome nuxt](https://github.com/nuxt-community/awesome-nuxt)
 
 ## How nuxt works
 ```
