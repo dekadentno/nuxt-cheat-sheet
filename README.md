@@ -4,6 +4,10 @@
 Nuxt.js is a higher-level framework that builds on top of Vue. It simplifies the development of universal or single page Vue apps.
 Nuxt.js is not a server side framework. It runs on the servers. It renders the first page and after the first page is renderd, the Vue.js app takes over. 
 
+## Common terms
+* pre rendering - app is rendered or generated upfront. Pre rendering is not the same as SSR because you don't need a server because the app is rendered in static html files.
+  * client side rendering - javascript - side effects like blinking, load time etc. 
+
 Useful links:
 * [Creating a nuxt app + documentation](https://nuxtjs.org/guide/installation)
 * [Awesome nuxt](https://github.com/nuxt-community/awesome-nuxt)
