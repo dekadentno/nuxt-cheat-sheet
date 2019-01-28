@@ -58,3 +58,14 @@ export default {
   }
 }
 ```
+
+### Async Data
+Using the asyncData object in pages:
+```javascript
+export default {
+  async asyncData ({ params }) {
+    let { data } = await axios.get(`https://my-api/posts/${params.id}`)
+    return { title: data.title } // title is a variable in our component data
+  }
+}
+```
