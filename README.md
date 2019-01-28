@@ -29,6 +29,18 @@ Useful links:
 
 # Directory structure
 * pages - contains your Application Views and Routes. The framework reads all the .vue files inside this directory and creates the application router.
-  ** Static routes will be named ```index.html``` in its corresponding folder (folder structure)
-  ** Dynamic routes need to have prefixes (e.g.: ```_id.vue```)
-  ** Access route object via ```$route```
+  * Static routes will be named ```index.html``` in its corresponding folder (folder structure)
+  * Dynamic routes need to have prefixes (e.g.: ```_id.vue```)
+  * Access route object via ```$route```
+  * use ```nuxt-link``` to navigate between pages, so an extra request to the server call won't be sent
+  
+ ### Validate routes
+ Nuxt.js lets you define a validator method inside your dynamic route component. Nuxt.js will automatically load the 404 error page or 500 error page in case of an error. More details [here](https://nuxtjs.org/api/pages-validate)
+```javascript
+export default {
+  validate ({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.id)
+  }
+}
+```
