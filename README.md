@@ -12,6 +12,7 @@ Useful links:
 * [Creating a nuxt app + documentation](https://nuxtjs.org/guide/installation)
 * [Awesome nuxt](https://github.com/nuxt-community/awesome-nuxt)
 * [Axios for nuxt](https://axios.nuxtjs.org/) - interceptors, headers...
+* [Using env variables in nuxt](https://samuelcoe.com/blog/nuxt-dotenv/)
 
 ## How nuxt works
 ```
