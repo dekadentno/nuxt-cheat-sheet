@@ -107,3 +107,45 @@ computed: {
 }
 ```
 
+## 301 redirects
+1. Create a list of 301 redirections in a json file at project root:
+
+```js
+// 301.json 
+
+[
+  { "from": "/old", "to": "/new" },
+  { "from": "/veryold.html", "to": "/verynew" },
+  { "from": "/realy/too-old.html", "to": "/new" }
+]
+```
+
+2. Create a server middleware for 301 redirect
+```js
+// middleware/seo.js
+
+const redirects = require('../301.json')
+
+module.exports = function (req, res, next) {
+  const redirect = redirects.find(r => r.from === req.url)
+  if (redirect) {
+    console.log(`redirect: ${redirect.from} => ${redirect.to}`)
+    res.writeHead(301, { Location: redirect.to })
+    res.end()
+  } else {
+    next()
+  }
+}
+```
+
+3. Add the server middleware in your config file:
+```js
+// nuxt.config.js
+
+module.exports = {
+  serverMiddleware: [
+    '~/middleware/seo.js'
+  ],
+ ...
+}
+```
