@@ -196,6 +196,18 @@ export default {
     <p>The link you clicked on may be broken or no longer exist.</p>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'Error404',
+    props: {
+      error: {
+        type: Object,
+        default: () => {},
+      },
+    },
+  };
+</script>
 ```
 
 3. Make sure that nuxt generates a 404.html file instead of /404/index.html file automatically by editing your nuxt.config.js file.
