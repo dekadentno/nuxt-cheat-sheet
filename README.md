@@ -227,7 +227,7 @@ module.exports = {
 
 ### Working with localStorage
 Use ```process.browser``` or ```process.server``` to be sure you're on the client side.
-```
+```js
 if (process.browser) {
   let current = localStorage.getItem('subheader') || 1;
   localStorage.setItem('subheader', (current % 3) + 1);
