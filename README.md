@@ -234,3 +234,17 @@ if (process.browser) {
   this.currentSubheader = (current % 3) + 1;
 }
 ```
+
+### Plugins to load before mounting the App
+```js
+// plugins/after-each.js:
+export default async ({ app }) => {
+  app.router.afterEach((to, from) => {
+    // Do something
+  });
+}
+```
+And then reference it in nuxt.config.js:
+```js
+plugins: [ { src: '~/plugins/after-each.js', mode: 'client' } ]
+```
