@@ -248,3 +248,42 @@ And then reference it in nuxt.config.js:
 ```js
 plugins: [ { src: '~/plugins/after-each.js', mode: 'client' } ]
 ```
+
+### Installing global components
+If you have custom components like buttons, modals etc., you would want to register them globally to avoid importing them in every component. First of all, make a ```.js``` file in the ```plugins``` directory:
+```js
+// globalComponentImport.js
+/* eslint-disable */
+import Vue from 'vue';
+const requireComponent = require.context(
+  // The relative path of the components folder
+  '../components',
+  // Whether or not to look in subfolders
+  true,
+  // The regular expression used to match base component filenames (Ts prefix)
+  /Ts[a-zA-Z0-9]\w+\.(vue|js)$/
+)
+requireComponent.keys().forEach(function (fileName) {
+  // Get component config
+  // Look for the component options on `.default`, which will
+  // exist if the component was exported with `export default`,
+  // otherwise fall back to module's root.
+  let baseComponentConfig = requireComponent(fileName)
+  baseComponentConfig = baseComponentConfig.default || baseComponentConfig
+  // Get component name
+  const baseComponentName =
+    baseComponentConfig.name ||
+    fileName.replace(/^.+\//, '').replace(/\.\w+$/, '')
+  // Register component globally
+  Vue.component(baseComponentName, baseComponentConfig)
+})
+```
+Load the plugin in the ```nuxt.config.js```:
+```js
+ plugins: [
+   {
+     src: '~/plugins/globalComponentImport.js',
+     ssr: true
+   }
+]
+```
